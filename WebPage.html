@@ -103,8 +103,17 @@ tr {
         alert("Cannot connect to nixons-head.");
     });
         
-    var turn_on_instructions = "put turn on instructions here";
-    var turn_off_instructions = "put turn off instructions here";
+    var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." + 
+        "\n2. Turn on laptop and log in." + 
+        "\n3. Remove charging cable BEFORE moving robot." + 
+        "\n4. Move robot to desired start position." + 
+        "\n5. Turn on segway base (Push green button, wait 2 seconds, push yellow button)." + 
+        "\n6. Launch desired launch file (roslaunch bwi_launch segbot_v#.launch, where # = 2 or 3, depending on the robot).";
+    var turn_off_instructions = "1. Kill all running launch programs." + 
+        "\n2. Turn off segway base (Push yellow button, wait 2 seconds, push green button)." + "\n3. Turn off laptop." + 
+        "\n4. Move robot to charging area." + 
+        "\n5. Plug in charging cable." + 
+        "\n6. Move main power from 'BATTERY' to 'CHARGER'.";
         $(document).ready(function(){
             $(".on").click(function(){
             alert(turn_on_instructions);
