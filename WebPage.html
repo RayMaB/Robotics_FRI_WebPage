@@ -9,29 +9,6 @@
   <!--upload jquery api to the server so if the api were to go down, we can pull it
             directly from the server (skylar says)-->
 </head>
-
-<head>
-<<<<<<< HEAD
-  <style>
-    * {
-      font-family: open_sans, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      background-color: white;
-    }
-
-    h1 {
-      color: black;
-      font-size: 40px;
-    }
-
-    tr {
-      color: black;
-      font-size: 30px;
-    }
-  </style>
-=======
 <style>
 
 * {
@@ -40,56 +17,27 @@
 body {
 	background-color: white;
 }
-@@ -9,22 +18,21 @@ body {
 h1 {
 	color: black;
 	font-size: 40px;
 	font-family: fantasy;
 }
 tr {
-	color: black;  
-	font-size: 30px; 
+	color: black;
+	font-size: 30px;
 	font-family: monospace;
 	font-size: 30px;
 }
 </style>
->>>>>>> origin/master
-</head>
 
 <body>
-<<<<<<< HEAD
-  <title class=“ status”> BWIBot Information </title>
 
-  <h1> <center> BWIBot Information </center> </h1>
-
-  <table style="width:50%">
-    <tr>
-      <th>Robot: </th>
-      <th> <img class="robot_bender" src="Icons\bender.jpg" alt="" /> </th>
-      <th><img class="robot_leela" src="Icons\leela.jpg" alt="" /> </th>
-      <th><img class="robot_pickles" src="Icons\pickles.jpg" alt="" /> </th>
-    </tr>
-    <th>Battery: </th>
-    <th>Active: </th>
-    </tr>
-
-    <script>
-      $.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
-          var parsedHead = JSON.parse(data);
-          //do conditionals
-        })
-        .fail(function() {
-          alert("Cannot connect to nixons-head.");
-        });
-    </script>
-=======
-    
 <h1> <center> BWIBot Information </center> </h1>
-    
+
 <table style = "width:60%">
     <tr>
         <th>Robot</th>
-        <th>Battery</th> 
+        <th>Battery</th>
         <th>Current User</th>
         <th>Current Floor</th>
         <th>Turn On/Off</th>
@@ -115,7 +63,7 @@ tr {
         <td> <b1 class = "pickles_floor"/></td>
     </tr>
 <table/>
-  
+
 <script>$.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
     var parsedHead = JSON.parse(data);
     //parsedHead[0] = Leela's info
@@ -144,28 +92,28 @@ tr {
         $(".leela_user").html(parsedHead[0].User);
         $(".bender_user").html(parsedHead[1].User);
         //$(".pickles_user").html(parsedHead[2].User);
-       
+
         $(".leela_floor").html(parsedHead[0].Level);
         $(".bender_floor").html(parsedHead[1].Level);
         //$(".pickles_floor").html(parsedHead[2].Level);
-        
-        
+
+
     })
-    
+
     .fail(function() {
         alert("Cannot connect to nixons-head.");
     });
-        
-    var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." + 
-        "\n2. Turn on laptop and log in." + 
-        "\n3. Remove charging cable BEFORE moving robot." + 
-        "\n4. Move robot to desired start position." + 
-        "\n5. Turn on segway base (Push green button, wait 2 seconds, push yellow button)." + 
+
+    var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." +
+        "\n2. Turn on laptop and log in." +
+        "\n3. Remove charging cable BEFORE moving robot." +
+        "\n4. Move robot to desired start position." +
+        "\n5. Turn on segway base (Push green button, wait 2 seconds, push yellow button)." +
         "\n6. Launch desired launch file (roslaunch bwi_launch segbot_v#.launch, where # = 2 or 3, depending on the robot).";
-    var turn_off_instructions = "1. Kill all running launch programs." + 
-        "\n2. Turn off segway base (Push yellow button, wait 2 seconds, push green button)." + "\n3. Turn off laptop." + 
-        "\n4. Move robot to charging area." + 
-        "\n5. Plug in charging cable." + 
+    var turn_off_instructions = "1. Kill all running launch programs." +
+        "\n2. Turn off segway base (Push yellow button, wait 2 seconds, push green button)." + "\n3. Turn off laptop." +
+        "\n4. Move robot to charging area." +
+        "\n5. Plug in charging cable." +
         "\n6. Move main power from 'BATTERY' to 'CHARGER'.";
         $(document).ready(function(){
             $(".on").click(function(){
@@ -176,8 +124,6 @@ tr {
         });
     });
 </script>
->>>>>>> origin/master
 </body>
 
 </html>
-
