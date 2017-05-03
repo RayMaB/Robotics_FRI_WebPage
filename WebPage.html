@@ -8,45 +8,112 @@
 	</head>
 <head>
 <style>
+
 * {
 	font-family: open_sans,"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 body {
 	background-color: white;
 }
-
+@@ -9,22 +18,21 @@ body {
 h1 {
 	color: black;
 	font-size: 40px;
+	font-family: fantasy;
 }
 tr {
 	color: black;  
+	font-size: 30px; 
+	font-family: monospace;
 	font-size: 30px;
 }
 </style>
 </head>
 <body>
-<title class = “status” > BWIBot Information </title>
     
 <h1> <center> BWIBot Information </center> </h1>
     
-<table style = "width:50%">
-  <tr>
-      <th>Robot: </th>
-	<th> <img class="robot_bender"  src="Icons\bender.jpg" alt="" /> </th>
-    <th><img class="robot_Leela"  src="Icons\Leela.jpg" alt="" /> </th> 
-    <th><img class="robot_other"  src="Icons\forgot_his_name.jpg" alt="" /> </th>
-  </tr>
-	 <th>Battery: </th> 
-    <th>Active: </th>
-  </tr>
+<table style = "width:60%">
+    <tr>
+        <th>Robot</th>
+        <th>Battery</th> 
+        <th>Current User</th>
+        <th>Current Floor</th>
+        <th>Turn On/Off</th>
+    </tr>
+    <tr>
+        <td> <img class = "robot_leela"  src = "Icons\leela.jpg" alt = "" /> </td>
+        <td> <img class = "leela_battery battery"/> </td>
+        <td> <b1 class = "leela_user"/> </td>
+        <td> <b1 class = "leela_floor"/> </td>
+        <td> <img class = "on" src = "Icons\turn_on.jpg"/></td> <!--change location later-->
+    </tr>
+    <tr>
+        <td> <img class = "robot_bender"  src = "Icons\bender.jpg" alt = "" /> </td>
+        <td> <img class = "bender_battery battery"/> </td>
+        <td> <b1 class = "bender_user"/> </td>
+        <td> <b1 class = "bender_floor"/> </td>
+        <td> <img class = "off" src = "Icons\turn_off.jpg"/></td> <!--change location later-->
+    </tr>
+    <tr>
+        <td> <img class = "robot_pickles"  src = "Icons\pickles.jpg" alt = "" /> </td>
+        <td> <img class = "pickles_battery battery"/> </td>
+        <td> <b1 class = "pickles_user"/> </td>
+        <td> <b1 class = "pickles_floor"/></td>
+    </tr>
+<table/>
   
 <script>$.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
     var parsedHead = JSON.parse(data);
-        //do conditionals
+    //parsedHead[0] = Leela's info
+    //parsedHead[1] = Bender's info
+        if(parsedHead[0].Alive === "false")
+        {
+            $(".leela_battery").attr("src", "Icons/dead_battery.jpg");
+            //display red battery
+        }
+        else
+        {
+            $(".leela_battery").attr("src", "Icons/full_battery.jpg");
+            //if battery is above certain level, display different icons
+        }
+        if(parsedHead[1].Alive === "false")
+        {
+            $(".bender_battery").attr("src", "Icons/dead_battery.jpg");
+            //display red battery
+        }
+        else
+        {
+            $(".battery_battery").attr("src", "Icons/full_battery.jpg");
+            //if battery is above certain level, display different icons
+        }
+        //add battery conditionals for pickles? or will he be cannabalized soon?
+        $(".leela_user").html(parsedHead[0].User);
+        $(".bender_user").html(parsedHead[1].User);
+        //$(".pickles_user").html(parsedHead[2].User);
+       
+        $(".leela_floor").html(parsedHead[0].Level);
+        $(".bender_floor").html(parsedHead[1].Level);
+        //$(".pickles_floor").html(parsedHead[2].Level);
+        
+        
     })
+    
     .fail(function() {
         alert("Cannot connect to nixons-head.");
-    });</script>
+    });
+        
+    var turn_on_instructions = "put turn on instructions here";
+    var turn_off_instructions = "put turn off instructions here";
+        $(document).ready(function(){
+            $(".on").click(function(){
+            alert(turn_on_instructions);
+        });
+            $(".off").click(function(){
+            alert(turn_off_instructions);
+        });
+    });
+</script>
 </body>
 </html>
+
