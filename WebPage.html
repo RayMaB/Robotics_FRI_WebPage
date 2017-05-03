@@ -1,52 +1,59 @@
 <html>
-	<head>
-		<title> BWIBot Information </title>
-        <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js" type="text/javascript"><\/script>');</script>
-        <!--upload jquery api to the server so if the api were to go down, we can pull it
-            directly from the server (skylar says)-->
-	</head>
-<head>
-<style>
-* {
-	font-family: open_sans,"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
-}
-body {
-	background-color: white;
-}
 
-h1 {
-	color: black;
-	font-size: 40px;
-}
-tr {
-	color: black;  
-	font-size: 30px;
-}
-</style>
+<head>
+  <title> BWIBot Information </title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js" type="text/javascript"><\/script>');
+  </script>
+  <!--upload jquery api to the server so if the api were to go down, we can pull it
+            directly from the server (skylar says)-->
 </head>
+
+<head>
+  <style>
+    * {
+      font-family: open_sans, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: white;
+    }
+
+    h1 {
+      color: black;
+      font-size: 40px;
+    }
+
+    tr {
+      color: black;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
 <body>
-<title class = “status” > BWIBot Information </title>
-    
-<h1> <center> BWIBot Information </center> </h1>
-    
-<table style = "width:50%">
-  <tr>
+  <title class=“ status”> BWIBot Information </title>
+
+  <h1> <center> BWIBot Information </center> </h1>
+
+  <table style="width:50%">
+    <tr>
       <th>Robot: </th>
-	<th> <img class="robot_bender"  src="Icons\bender.jpg" alt="" /> </th>
-    <th><img class="robot_Leela"  src="Icons\Leela.jpg" alt="" /> </th> 
-    <th><img class="robot_other"  src="Icons\forgot_his_name.jpg" alt="" /> </th>
-  </tr>
-	 <th>Battery: </th> 
+      <th> <img class="robot_bender" src="Icons\bender.jpg" alt="" /> </th>
+    </tr>
+    <th>Battery: </th>
     <th>Active: </th>
-  </tr>
-  
-<script>$.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
-    var parsedHead = JSON.parse(data);
-        //do conditionals
-    })
-    .fail(function() {
-        alert("Cannot connect to nixons-head.");
-    });</script>
+    </tr>
+
+    <script>
+      $.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
+          var parsedHead = JSON.parse(data);
+          //do conditionals
+        })
+        .fail(function() {
+        });
+    </script>
 </body>
+
 </html>
