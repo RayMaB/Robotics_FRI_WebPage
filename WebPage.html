@@ -35,6 +35,9 @@
     margin-left: auto;
     margin-right: auto;
   }
+  table {
+    text-align: center;
+  }
 </style>
 
 <body>
@@ -47,72 +50,130 @@
       <th>Battery</th>
       <th>Current User</th>
       <th>Current Floor</th>
-      <th>Turn On/Off</th>
       <th>Battery Percentage</th>
       <th>Battery Time Remaining</th>
     </tr>
     <tr>
       <td> <img class="robot_leela" src="Icons\leela.png" alt="" /> </td>
-      <td> <img class="leela_battery battery" /> </td>
-      <td> <b1 class="leela_user" /> </td>
-      <td> <b1 class="leela_floor" /> </td>
-      <td> <img class="on" src="Icons\turn_on.png" /></td>
+      <td> <img class="leela_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <b1 class="leela_user">Unkown user</b1> </td>
+      <td> <b1 class="leela_floor">Uknown floor</b1> </td>
       <!--change location later-->
-      <td> <b1 class="leela_batt_perc" /></td>
-      <td> <b1 class="leela_time_left" /></td>
+      <td> <b1 class="leela_batt_perc">Unkown percentage</b1> </td>
+      <td> <b1 class="leela_time_left">Unkown time remaining</b1> </td>
     </tr>
     <tr>
       <td> <img class="robot_bender" src="Icons\bender.png" alt="" /> </td>
-      <td> <img class="bender_battery battery" /> </td>
-      <td> <b1 class="bender_user" /> </td>
-      <td> <b1 class="bender_floor" /> </td>
-      <td> <img class="off" src="Icons\turn_off.png" /></td>
+      <td> <img class="bender_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <b1 class="bender_user">Unkown user</b1> </td>
+      <td> <b1 class="bender_floor">Unkown floor</b1> </td>
       <!--change location later-->
-      <td> <b1 class="bender_batt_perc" /></td>
-      <td> <b1 class="bender_time_left" /></td>
+      <td> <b1 class="bender_batt_perc">Unkown percentage</b1> </td>
+      <td> <b1 class="bender_time_left">Unkown time remaining</b1> </td>
     </tr>
     <tr>
       <td> <img class="robot_pickles" src="Icons\pickles.png" alt="" /> </td>
-      <td> <img class="pickles_battery battery" /> </td>
-      <td> <b1 class="pickles_user" /> </td>
-      <td> <b1 class="pickles_floor" /></td>
+      <td> <img class="pickles_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <b1 class="pickles_user">Unkown user</b1> </td>
+      <td> <b1 class="pickles_floor">Unkownn floor</b1> </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th style="padding: 30px">Turn on</th>
+      <th style="padding: 30px">Turn off</th>
+    </tr>
+    <tr>
+      <td> <img class="on" src="Icons\turn_on.png"/></td>
+      <td> <img class="off" src="Icons\turn_off.png" /></td>
     </tr>
   </table>
 
   <script>
-    $.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
-      var parsedHead = JSON.parse(data);
-      //parsedHead[0] = Leela's info
-      //parsedHead[1] = Bender's info
-      if (parsedHead[0].Alive === "false") {
-        $(".leela_battery").attr("src", "Icons/dead_battery.png");
-        //display red battery
-      } else {
-        $(".leela_battery").attr("src", "Icons/full_battery.png");
-        //if battery is above certain level, display different icons
-      }
-      if (parsedHead[1].Alive === "false") {
-        $(".bender_battery").attr("src", "Icons/dead_battery.png");
-        //display red battery
-      } else {
-        $(".battery_battery").attr("src", "Icons/full_battery.png");
-        //if battery is above certain level, display different icons
-      }
-      //add battery conditionals for pickles? or will he be cannabalized soon?
-      $(".leela_user").html(parsedHead[0].User);
-      $(".bender_user").html(parsedHead[1].User);
-      //$(".pickles_user").html(parsedHead[2].User);
+    (function() {
+      $.get("http://nixons-head.csres.utexas.edu:7978/json", function(data) {
+        var parsedHead = JSON.parse(data);
+        //parsedHead[0] = Leela's info
+        //parsedHead[1] = Bender's info
 
-      $(".leela_floor").html(parsedHead[0].Level);
-      $(".bender_floor").html(parsedHead[1].Level);
-      //$(".pickles_floor").html(parsedHead[2].Level);
+        // set up leela's data in the table
+        if(typeof parsedHead[0] !== 'undefined')
+        {
+          if(typeof parsedHead[0].Alive !== 'undefined')
+          {
+            if (parsedHead[0].Alive === "false") {
+              $(".leela_battery").attr("src", "Icons/dead_battery.png");
+              //display red battery
+            } else {
+              $(".leela_battery").attr("src", "Icons/full_battery.png");
+              //if battery is above certain level, display different icons
+            }
+          }
 
+          if(typeof parsedHead[0].User !== 'undefined')
+            $(".leela_user").html(parsedHead[0].User);
 
-    })
+          if(typeof parsedHead[0].Level !== 'undefined')
+            $(".leela_floor").html(parsedHead[0].Level);
 
-    .fail(function() {
-      alert("Cannot connect to nixons-head.");
-    });
+          if(typeof parsedHead[0].Percentage !== 'undefined')
+            $(".leela_batt_perc").html(parsedHead[0].Percentage); // may need adjustment depending on the json implementation
+        }
+
+        if(typeof parsedHead[1] !== 'undefined')
+        {
+          if(typeof parsedHead[1].Alive !== 'undefined')
+          {
+            if (parsedHead[1].Alive === "false") {
+              $(".bender_battery").attr("src", "Icons/dead_battery.png");
+              //display red battery
+            } else {
+              $(".bender_battery").attr("src", "Icons/full_battery.png");
+              //if battery is above certain level, display different icons
+            }
+          }
+
+          if(typeof parsedHead[1].User !== 'undefined')
+            $(".bender_user").html(parsedHead[1].User);
+
+          if(typeof parsedHead[1].Level !== 'undefined')
+            $(".bender_floor").html(parsedHead[1].Level);
+
+          if(typeof parsedHead[1].Percentage !== 'undefined')
+            $(".bender_batt_perc").html(parsedHead[1].Percentage); // may need adjustment depending on the json implementation
+        }
+
+        // comment in if pickles is added to the json
+        /*if(typeof parsedHead[2] !== 'undefined')
+        {
+          if(typeof parsedHead[2].Alive !== 'undefined')
+          {
+            if (parsedHead[1].Alive === "false") {
+              $(".pickles_battery").attr("src", "Icons/dead_battery.png");
+              //display red battery
+            } else {
+              $(".pickles_battery").attr("src", "Icons/full_battery.png");
+              //if battery is above certain level, display different icons
+            }
+          }
+
+          if(typeof parsedHead[2].User !== 'undefined')
+            $(".pickles_user").html(parsedHead[2].User);
+
+          if(typeof parsedHead[2].Level !== 'undefined')
+            $(".pickles_floor").html(parsedHead[2].Level);
+
+          if(typeof parsedHead[2].Percentage !== 'undefined')
+            $(".picles_batt_perc").html(parsedHead[2].Percentage); // may need adjustment depending on the json implementation
+        }*/
+
+      })
+      .fail(function() {
+        alert("Cannot connect to nixons-head.");
+      });
+      setTimeout(arguments.callee,60000);
+    })();
 
     var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." +
       "\n2. Turn on laptop and log in." +
