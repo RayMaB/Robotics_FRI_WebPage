@@ -7,7 +7,7 @@
     window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js" type="text/javascript"><\/script>');
   </script>
   <!--upload jquery api to the server so if the api were to go down, we can pull it
-            directly from the server (skylar says)-->
+            directly from the server-->
 </head>
 <style>
   * {
@@ -100,18 +100,21 @@
         {
           if(typeof parsedHead[0].Alive != 'undefined')
           {
-            if(parsedHead[0].Alive === "false") 
+            if(parsedHead[0].Alive === "false")
             {
                 $(".leela_battery").attr("src", "Icons/empty_off.jpg");
             } 
             else 
             {
-                if(typeof parsedHead[0].TimeRemaining != 'undefined')
+                var leela_time_remaining = parsedHead[0].TimeRemaining;
+                $(".leela_time_remaining").html(leela_time_remaining / 2); 
+                /*if(typeof parsedHead[0].TimeRemaining != 'undefined')
                     {
                         var leela_time_remaining = parsedHead[0].TimeRemaining;
                         $(".leela_time_remaining").html(leela_time_remaining); 
                         //may need adjustment after we ensure json works
                     }
+                */
                 if(leela_time_remaining >= 16)
                     $(".leela_battery").attr("src", "Icons/full_battery.png");
                 else if(leela_time_remaining >= 12)
@@ -135,18 +138,22 @@
         {
           if(typeof parsedHead[1].Alive != 'undefined')
           {
-            if (parsedHead[1].Alive === "false") 
+            if (parsedHead[1].Alive === "false")
             {
               $(".bender_battery").attr("src", "Icons/empty_off.jpg");
             } 
             else 
-            {       
-                if(typeof parsedHead[1].TimeRemaining != 'undefined')
+            {   
+                var bender_time_remaining = parsedHead[1].TimeRemaining;
+                $(".bender_time_remaining").html(bender_time_remaining); 
+                
+                /*if(typeof parsedHead[1].TimeRemaining != 'undefined')
                     {
                         var bender_time_remaining = parsedHead[1].TimeRemaining;
                         $(".bender_time_remaining").html(bender_time_remaining); 
                         //may need adjustment after we ensure json works
                     }
+                */
                if(bender_time_remaining >= 16)
                     $(".bender_battery").attr("src", "Icons/full_battery.png");
                 else if(bender_time_remaining >= 12)
