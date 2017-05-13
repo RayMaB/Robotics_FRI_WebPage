@@ -50,8 +50,7 @@
       <th>Battery</th>
       <th>User</th>
       <th>Floor</th>
-      <th>Battery Time Remaining</th>
-      <th>Charging Order</th>
+      <th>Time Remaining</th>
     </tr>
     <tr>
       <td> <img class = "robot_leela" src = "Icons\leela.png" alt = "" /> </td>
@@ -59,7 +58,6 @@
       <td> <b1 class = "leela_user">Unknown</b1> </td>
       <td> <b1 class = "leela_floor">Unknown</b1> </td>
       <td> <b1 class = "leela_time_remaining">Unknown</b1> </td>
-      <td> <b1 class = "leela_charge_order">0</b1> </td>
     </tr>
     <tr>
       <td> <img class = "robot_bender" src = "Icons\bender.png" alt = "" /> </td>
@@ -67,7 +65,6 @@
       <td> <b1 class = "bender_user">Unknown</b1> </td>
       <td> <b1 class = "bender_floor">Unknown</b1> </td>
       <td> <b1 class = "bender_time_remaining">Unknown</b1> </td>
-      <td> <b1 class = "leela_charge_order">0</b1> </td>
     </tr>
    <!-- <tr> comment in if pickles is ever added to the json
       <td> <img class = "robot_pickles" src = "Icons\pickles.png" alt = "" /> </td>
@@ -103,7 +100,8 @@
             if(parsedHead[0].Alive === "false") 
             {
                 $(".leela_battery").attr("src", "Icons/empty_off.jpg");
-            } else 
+            } 
+            else 
             {
                 if(typeof parsedHead[0].TimeRemaining != 'undefined')
                     {
@@ -192,10 +190,8 @@
       .fail(function() {
         alert("Cannot connect to nixons-head.");
       });
-      setTimeout(arguments.callee,60000);
+      setTimeout(callback, 60000);
     })();
-      
-    if()  
 
     var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." +
       "\n2. Turn on laptop and log in." +
