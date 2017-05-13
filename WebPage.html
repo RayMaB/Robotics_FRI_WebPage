@@ -44,51 +44,44 @@
 
   <h1> <center> BWIBot Information </center> </h1>
 
-  <table style="width:60%">
+  <table style = "width:90%">
     <tr>
       <th>Robot</th>
       <th>Battery</th>
       <th>Current User</th>
       <th>Current Floor</th>
-      <th>Battery Percentage</th>
       <th>Battery Time Remaining</th>
     </tr>
     <tr>
-      <td> <img class="robot_leela" src="Icons\leela.png" alt="" /> </td>
-      <td> <img class="leela_battery battery" src="Icons/unknown_battery.png"/> </td>
-      <td> <b1 class="leela_user">Unknown user</b1> </td>
-      <td> <b1 class="leela_floor">Unknown floor</b1> </td>
-      <!--change location later-->
-      <td> <b1 class="leela_batt_perc">Unknown percentage</b1> </td>
-      <td> <b1 class="leela_time_left">Unknown time remaining</b1> </td>
+      <td> <img class = "robot_leela" src = "Icons\leela.png" alt = "" /> </td>
+      <td> <img class = "leela_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <b1 class = "leela_user">Unknown</b1> </td>
+      <td> <b1 class = "leela_floor">Unknown</b1> </td>
+      <td> <b1 class = "leela_time_remaining">Unknown</b1> </td>
     </tr>
     <tr>
-      <td> <img class="robot_bender" src="Icons\bender.png" alt="" /> </td>
-      <td> <img class="bender_battery battery" src="Icons/unknown_battery.png"/> </td>
-      <td> <b1 class="bender_user">Unknown user</b1> </td>
-      <td> <b1 class="bender_floor">Unknown floor</b1> </td>
-      <!--change location later-->
-      <td> <b1 class="bender_batt_perc">Unknown percentage</b1> </td>
-      <td> <b1 class="bender_time_left">Unknown time remaining</b1> </td>
+      <td> <img class = "robot_bender" src = "Icons\bender.png" alt = "" /> </td>
+      <td> <img class = "bender_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <b1 class = "bender_user">Unknown</b1> </td>
+      <td> <b1 class = "bender_floor">Unknown</b1> </td>
+      <td> <b1 class = "bender_time_remaining">Unknown</b1> </td>
     </tr>
-    <tr>
-      <td> <img class="robot_pickles" src="Icons\pickles.png" alt="" /> </td>
-      <td> <img class="pickles_battery battery" src="Icons/unknown_battery.png"/> </td>
-      <td> <b1 class="pickles_user">Unkown user</b1> </td>
-      <td> <b1 class="pickles_floor">Unkown floor</b1> </td>
-      <td> <b1 class="pickles_user">Unknown user</b1> </td>
-      <td> <b1 class="pickles_floor">Unknown floor</b1> </td>
-    </tr>
+   <!-- <tr> comment in if pickles is ever added to the json
+      <td> <img class = "robot_pickles" src = "Icons\pickles.png" alt = "" /> </td>
+      <td> <img class = "pickles_battery battery" src = "Icons/unknown_battery.png"/> </td>
+      <td> <b1 class = "pickles_user">Unknown</b1> </td>
+      <td> <b1 class = "pickles_floor">Unknown</b1> </td>
+    </tr> -->
   </table>
 
   <table>
     <tr>
-      <th style="padding: 30px">Turn on</th>
-      <th style="padding: 30px">Turn off</th>
+      <th style = "padding: 30px">Turn On</th>
+      <th style = "padding: 30px">Turn Off</th>
     </tr>
     <tr>
-      <td> <img class="on" src="Icons\turn_on.png"/></td>
-      <td> <img class="off" src="Icons\turn_off.png" /></td>
+      <td> <img class = "on" src = "Icons\turn_on.png"/></td>
+      <td> <img class = "off" src = "Icons\turn_off.png" /></td>
     </tr>
   </table>
 
@@ -99,57 +92,69 @@
         //parsedHead[0] = Leela's info
         //parsedHead[1] = Bender's info
 
-        // set up leela's data in the table
+        //leela's data
         if(typeof parsedHead[0] != 'undefined')
         {
-          if(typeof parsedHead[0].Alive !== 'undefined')
+          if(typeof parsedHead[0].Alive != 'undefined')
           {
-            if (parsedHead[0].Alive === "false") {
-              $(".leela_battery").attr("src", "Icons/dead_battery.png");
+            if(parsedHead[0].Alive === "false") 
+            {
+                $(".leela_battery").attr("src", "Icons/dead_battery.png");
               //display red battery
-            } else {
-              $(".leela_battery").attr("src", "Icons/full_battery.png");
+            } else 
+            {
+                if(typeof parsedHead[0].TimeRemaining != 'undefined')
+                    {
+                        var leela_time_remaining = parsedHead[0].TimeRemaining;
+                        $(".leela_time_remaining").html(leela_time_remaining); 
+                        //may need adjustment after we ensure json works
+                    }
+                $(".leela_battery").attr("src", "Icons/full_battery.png");
               //if battery is above certain level, display different icons
             }
           }
 
-          if(typeof parsedHead[0].User !== 'undefined')
+          if(typeof parsedHead[0].User != 'undefined')
             $(".leela_user").html(parsedHead[0].User);
 
-          if(typeof parsedHead[0].Level !== 'undefined')
+          if(typeof parsedHead[0].Level != 'undefined')
             $(".leela_floor").html(parsedHead[0].Level);
-
-          if(typeof parsedHead[0].Percentage !== 'undefined')
-            $(".leela_batt_perc").html(parsedHead[0].Percentage); // may need adjustment depending on the json implementation
         }
 
-        if(typeof parsedHead[1] !== 'undefined')
+        //bender's data  
+        if(typeof parsedHead[1] != 'undefined')
         {
-          if(typeof parsedHead[1].Alive !== 'undefined')
+          if(typeof parsedHead[1].Alive != 'undefined')
           {
-            if (parsedHead[1].Alive === "false") {
+            if (parsedHead[1].Alive === "false") 
+            {
               $(".bender_battery").attr("src", "Icons/dead_battery.png");
               //display red battery
-            } else {
+            } 
+            else 
+            {
+                if(typeof parsedHead[1].TimeRemaining != 'undefined')
+                    {
+                        var bender_time_remaining = parsedHead[1].TimeRemaining;
+                        $(".bender_time_remaining").html(bender_time_remaining); 
+                        //may need adjustment after we ensure json works
+                    }
               $(".bender_battery").attr("src", "Icons/full_battery.png");
               //if battery is above certain level, display different icons
             }
           }
 
-          if(typeof parsedHead[1].User !== 'undefined')
+          if(typeof parsedHead[1].User != 'undefined')
             $(".bender_user").html(parsedHead[1].User);
 
-          if(typeof parsedHead[1].Level !== 'undefined')
+          if(typeof parsedHead[1].Level != 'undefined')
             $(".bender_floor").html(parsedHead[1].Level);
-
-          if(typeof parsedHead[1].Percentage !== 'undefined')
-            $(".bender_batt_perc").html(parsedHead[1].Percentage); // may need adjustment depending on the json implementation
         }
 
         // comment in if pickles is added to the json
-        /*if(typeof parsedHead[2] !== 'undefined')
+        /*if(typeof parsedHead[2] != 'undefined')
         {
-          if(typeof parsedHead[2].Alive !== 'undefined')
+          if(typeof parsedHead[2].Alive != 'undefined')
           {
             if (parsedHead[1].Alive === "false") {
               $(".pickles_battery").attr("src", "Icons/dead_battery.png");
@@ -160,13 +165,13 @@
             }
           }
 
-          if(typeof parsedHead[2].User !== 'undefined')
+          if(typeof parsedHead[2].User != 'undefined')
             $(".pickles_user").html(parsedHead[2].User);
 
-          if(typeof parsedHead[2].Level !== 'undefined')
+          if(typeof parsedHead[2].Level != 'undefined')
             $(".pickles_floor").html(parsedHead[2].Level);
 
-          if(typeof parsedHead[2].Percentage !== 'undefined')
+          if(typeof parsedHead[2].Percentage != 'undefined')
             $(".picles_batt_perc").html(parsedHead[2].Percentage); // may need adjustment depending on the json implementation
         }*/
 
