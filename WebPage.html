@@ -240,7 +240,7 @@
       .fail(function() {
         alert("Cannot connect to nixons-head.");
       });
-      setTimeout(callback, 60000);
+      setTimeout(arguments.callee, 60000);
     })();
 
     var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." +
@@ -258,9 +258,11 @@
       $(".on").click(function() {
         alert(turn_on_instructions);
       });
+        
       $(".off").click(function() {
         alert(turn_off_instructions);
       });
+        
     });
   </script>
 </body>
