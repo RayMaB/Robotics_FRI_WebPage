@@ -53,22 +53,22 @@
       <th>Time Remaining</th>
     </tr>
     <tr>
-      <td> <img class = "robot_leela" src = "Icons\leela.png" alt = "" /> </td>
-      <td> <img class = "leela_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <img class = "robot_leela" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/leela.png?raw=true" alt = "" /> </td>
+      <td> <img class = "leela_battery battery" src="https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/unknown_battery.png?raw=true"/> </td>
       <td> <b1 class = "leela_user">Unknown</b1> </td>
       <td> <b1 class = "leela_floor">Unknown</b1> </td>
       <td> <b1 class = "leela_time_remaining">Unknown</b1> </td>
     </tr>
     <tr>
-      <td> <img class = "robot_bender" src = "Icons\bender.png" alt = "" /> </td>
-      <td> <img class = "bender_battery battery" src="Icons/unknown_battery.png"/> </td>
+      <td> <img class = "robot_bender" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/bender.png?raw=true" alt = "" /> </td>
+      <td> <img class = "bender_battery battery" src="https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/unknown_battery.png?raw=true"/> </td>
       <td> <b1 class = "bender_user">Unknown</b1> </td>
       <td> <b1 class = "bender_floor">Unknown</b1> </td>
       <td> <b1 class = "bender_time_remaining">Unknown</b1> </td>
     </tr>
    <!-- <tr> comment in if pickles is ever added to the json
-      <td> <img class = "robot_pickles" src = "Icons\pickles.png" alt = "" /> </td>
-      <td> <img class = "pickles_battery battery" src = "Icons/unknown_battery.png"/> </td>
+      <td> <img class = "robot_pickles" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/pickles.png?raw=true" alt = "" /> </td>
+      <td> <img class = "pickles_battery battery" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/unknown_battery.png?raw=true"/> </td>
       <td> <b1 class = "pickles_user">Unknown</b1> </td>
       <td> <b1 class = "pickles_floor">Unknown</b1> </td>
     </tr> -->
@@ -80,8 +80,8 @@
       <th style = "padding: 30px">Turn Off</th>
     </tr>
     <tr>
-      <td> <img class = "on" src = "Icons\turn_on.png"/></td>
-      <td> <img class = "off" src = "Icons\turn_off.png" /></td>
+      <td> <img class = "on" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/turn_on.png?raw=true"/></td>
+      <td> <img class = "off" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/turn_off.png?raw=true" /></td>
     </tr>
   </table>
 
@@ -99,7 +99,7 @@
           {
             if(parsedHead[0].Alive === "false") 
             {
-                $(".leela_battery").attr("src", "Icons/empty_off.jpg");
+                $(".leela_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/empty_off.jpg?raw=true");
             } 
             else 
             {
@@ -110,13 +110,13 @@
                         //may need adjustment after we ensure json works
                     }
                 if(leela_time_remaining >= 16)
-                    $(".leela_battery").attr("src", "Icons/full_battery.png");
+                    $(".leela_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/full_battery.png?raw=true");
                 else if(leela_time_remaining >= 12)
-                    $(".leela_battery").attr("src", "Icons/2_part_battery.png");
+                    $(".leela_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/2_part_battery.png?raw=true");
                 else if(leela_time_remaining >= 2)
-                    $(".leela_battery").attr("src", "Icons/1_part_battery.png");
+                    $(".leela_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/1_part_battery.png?raw=true");
                 else
-                    $(".bender_battery").attr("src", "Icons/dead_battery.png");
+                    $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/dead_battery.png?raw=true");
             }
           }
 
@@ -134,7 +134,7 @@
           {
             if (parsedHead[1].Alive === "false") 
             {
-              $(".bender_battery").attr("src", "Icons/empty_off.jpg");
+              $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/empty_off.jpg?raw=true");
             } 
             else 
             {       
@@ -145,13 +145,13 @@
                         //may need adjustment after we ensure json works
                     }
                if(bender_time_remaining >= 16)
-                    $(".bender_battery").attr("src", "Icons/full_battery.png");
+                    $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/full_battery.png?raw=true");
                 else if(bender_time_remaining >= 12)
-                    $(".bender_battery").attr("src", "Icons/2_part_battery.png");
+                    $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/2_part_battery.png?raw=true");
                 else if(bender_time_remaining >= 2)
-                    $(".bender_battery").attr("src", "Icons/1_part_battery.png");
+                    $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/1_part_battery.png?raw=true");
                 else
-                    $(".bender_battery").attr("src", "Icons/dead_battery.png");
+                    $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/dead_battery.png?raw=true");
             }
           }
 
@@ -168,10 +168,10 @@
           if(typeof parsedHead[2].Alive != 'undefined')
           {
             if (parsedHead[1].Alive === "false") {
-              $(".pickles_battery").attr("src", "Icons/dead_battery.png");
+              $(".pickles_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/dead_battery.png?raw=true");
               //display red battery
             } else {
-              $(".pickles_battery").attr("src", "Icons/full_battery.png");
+              $(".pickles_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/full_battery.png?raw=true");
               //if battery is above certain level, display different icons
             }
           }
@@ -190,7 +190,10 @@
       .fail(function() {
         alert("Cannot connect to nixons-head.");
       });
-      setTimeout(callback, 60000);
+	  
+	  //commented out because it breaking the button clicks
+	  //don't know why
+      // setTimeout(callback, 60000);
     })();
 
     var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." +
@@ -214,5 +217,4 @@
     });
   </script>
 </body>
-
 </html>
