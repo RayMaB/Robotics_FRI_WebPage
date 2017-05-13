@@ -48,8 +48,8 @@
     <tr>
       <th>Robot</th>
       <th>Battery</th>
-      <th>Current User</th>
-      <th>Current Floor</th>
+      <th>User</th>
+      <th>Floor</th>
       <th>Battery Time Remaining</th>
     </tr>
     <tr>
@@ -99,8 +99,7 @@
           {
             if(parsedHead[0].Alive === "false") 
             {
-                $(".leela_battery").attr("src", "Icons/dead_battery.png");
-              //display red battery
+                $(".leela_battery").attr("src", "Icons/empty_off.png");
             } else 
             {
                 if(typeof parsedHead[0].TimeRemaining != 'undefined')
@@ -109,8 +108,12 @@
                         $(".leela_time_remaining").html(leela_time_remaining); 
                         //may need adjustment after we ensure json works
                     }
-                $(".leela_battery").attr("src", "Icons/full_battery.png");
-              //if battery is above certain level, display different icons
+                if(leela_time_remaining >= 66)
+                    $(".leela_battery").attr("src", "Icons/full_battery.png");
+                else if(leela_time_remaining >= 33)
+                    $(".leela_battery").attr("src", "Icons/2_part_battery.png");
+                else
+                    $(".leela_battery").attr("src", "Icons/1_part_battery.png");
             }
           }
 
@@ -128,8 +131,7 @@
           {
             if (parsedHead[1].Alive === "false") 
             {
-              $(".bender_battery").attr("src", "Icons/dead_battery.png");
-              //display red battery
+              $(".bender_battery").attr("src", "Icons/empty_off.png");
             } 
             else 
             {
@@ -139,8 +141,14 @@
                         $(".bender_time_remaining").html(bender_time_remaining); 
                         //may need adjustment after we ensure json works
                     }
-              $(".bender_battery").attr("src", "Icons/full_battery.png");
-              //if battery is above certain level, display different icons
+               if(bender_time_remaining >= 66)
+                    $(".bender_battery").attr("src", "Icons/full_battery.png");
+                else if(bender_time_remaining >= 33)
+                    $(".bender_battery").attr("src", "Icons/2_part_battery.png");
+                else if(bender_time_remaining >= 10)
+                    $(".bender_battery").attr("src", "Icons/1_part_battery.png");
+                else
+                    $(".bender_battery").attr("src", "Icons/dead_battery.png");
             }
           }
 
