@@ -56,26 +56,28 @@
     <tr>
       <td> <img class="robot_leela" src="Icons\leela.png" alt="" /> </td>
       <td> <img class="leela_battery battery" src="Icons/unknown_battery.png"/> </td>
-      <td> <b1 class="leela_user">Unkown user</b1> </td>
-      <td> <b1 class="leela_floor">Uknown floor</b1> </td>
+      <td> <b1 class="leela_user">Unknown user</b1> </td>
+      <td> <b1 class="leela_floor">Unknown floor</b1> </td>
       <!--change location later-->
-      <td> <b1 class="leela_batt_perc">Unkown percentage</b1> </td>
-      <td> <b1 class="leela_time_left">Unkown time remaining</b1> </td>
+      <td> <b1 class="leela_batt_perc">Unknown percentage</b1> </td>
+      <td> <b1 class="leela_time_left">Unknown time remaining</b1> </td>
     </tr>
     <tr>
       <td> <img class="robot_bender" src="Icons\bender.png" alt="" /> </td>
       <td> <img class="bender_battery battery" src="Icons/unknown_battery.png"/> </td>
-      <td> <b1 class="bender_user">Unkown user</b1> </td>
-      <td> <b1 class="bender_floor">Unkown floor</b1> </td>
+      <td> <b1 class="bender_user">Unknown user</b1> </td>
+      <td> <b1 class="bender_floor">Unknown floor</b1> </td>
       <!--change location later-->
-      <td> <b1 class="bender_batt_perc">Unkown percentage</b1> </td>
-      <td> <b1 class="bender_time_left">Unkown time remaining</b1> </td>
+      <td> <b1 class="bender_batt_perc">Unknown percentage</b1> </td>
+      <td> <b1 class="bender_time_left">Unknown time remaining</b1> </td>
     </tr>
     <tr>
       <td> <img class="robot_pickles" src="Icons\pickles.png" alt="" /> </td>
       <td> <img class="pickles_battery battery" src="Icons/unknown_battery.png"/> </td>
       <td> <b1 class="pickles_user">Unkown user</b1> </td>
       <td> <b1 class="pickles_floor">Unkown floor</b1> </td>
+      <td> <b1 class="pickles_user">Unknown user</b1> </td>
+      <td> <b1 class="pickles_floor">Unknown floor</b1> </td>
     </tr>
   </table>
 
@@ -98,7 +100,7 @@
         //parsedHead[1] = Bender's info
 
         // set up leela's data in the table
-        if(typeof parsedHead[0] !== 'undefined')
+        if(typeof parsedHead[0] != 'undefined')
         {
           if(typeof parsedHead[0].Alive !== 'undefined')
           {
@@ -180,7 +182,7 @@
       "\n3. Remove charging cable BEFORE moving robot." +
       "\n4. Move robot to desired start position." +
       "\n5. Turn on segway base (Push green button, wait 2 seconds, push yellow button)." +
-      "\n6. Launch desired launch file (roslaunch bwi_launch segbot_v#.launch, where # = 2 or 3, depending on the robot).";
+      "\n6. Launch desired launch file (roslaunch bwi_launch segbot_v2.launch).";
     var turn_off_instructions = "1. Kill all running launch programs." +
       "\n2. Turn off segway base (Push yellow button, wait 2 seconds, push green button)." + "\n3. Turn off laptop." +
       "\n4. Move robot to charging area." +
