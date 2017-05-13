@@ -7,7 +7,7 @@
     window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js" type="text/javascript"><\/script>');
   </script>
   <!--upload jquery api to the server so if the api were to go down, we can pull it
-            directly from the server (skylar says)-->
+            directly from the server-->
 </head>
 <style>
   * {
@@ -51,6 +51,7 @@
       <th>User</th>
       <th>Floor</th>
       <th>Time Remaining</th>
+      <th>Charge Order</th>    
     </tr>
     <tr>
       <td> <img class = "robot_leela" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/leela.png?raw=true" alt = "" /> </td>
@@ -58,6 +59,7 @@
       <td> <b1 class = "leela_user">Unknown</b1> </td>
       <td> <b1 class = "leela_floor">Unknown</b1> </td>
       <td> <b1 class = "leela_time_remaining">Unknown</b1> </td>
+      <td> <b1 class = "leela_order">0</b1> </td>
     </tr>
     <tr>
       <td> <img class = "robot_bender" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/bender.png?raw=true" alt = "" /> </td>
@@ -65,6 +67,7 @@
       <td> <b1 class = "bender_user">Unknown</b1> </td>
       <td> <b1 class = "bender_floor">Unknown</b1> </td>
       <td> <b1 class = "bender_time_remaining">Unknown</b1> </td>
+      <td> <b1 class = "bender_order">0</b1> </td>
     </tr>
    <!-- <tr> comment in if pickles is ever added to the json
       <td> <img class = "robot_pickles" src = "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/pickles.png?raw=true" alt = "" /> </td>
@@ -97,18 +100,21 @@
         {
           if(typeof parsedHead[0].Alive != 'undefined')
           {
-            if(parsedHead[0].Alive === "false") 
+            if(parsedHead[0].Alive === "false")
             {
                 $(".leela_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/empty_off.jpg?raw=true");
             } 
             else 
             {
-                if(typeof parsedHead[0].TimeRemaining != 'undefined')
+                var leela_time_remaining = parsedHead[0].TimeRemaining;
+                $(".leela_time_remaining").html(leela_time_remaining / 2); 
+                /*if(typeof parsedHead[0].TimeRemaining != 'undefined')
                     {
                         var leela_time_remaining = parsedHead[0].TimeRemaining;
                         $(".leela_time_remaining").html(leela_time_remaining); 
                         //may need adjustment after we ensure json works
                     }
+                */
                 if(leela_time_remaining >= 16)
                     $(".leela_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/full_battery.png?raw=true");
                 else if(leela_time_remaining >= 12)
@@ -132,18 +138,22 @@
         {
           if(typeof parsedHead[1].Alive != 'undefined')
           {
-            if (parsedHead[1].Alive === "false") 
+            if (parsedHead[1].Alive === "false")
             {
               $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/empty_off.jpg?raw=true");
             } 
             else 
-            {       
-                if(typeof parsedHead[1].TimeRemaining != 'undefined')
+            {   
+                var bender_time_remaining = parsedHead[1].TimeRemaining;
+                $(".bender_time_remaining").html(bender_time_remaining); 
+                
+                /*if(typeof parsedHead[1].TimeRemaining != 'undefined')
                     {
                         var bender_time_remaining = parsedHead[1].TimeRemaining;
                         $(".bender_time_remaining").html(bender_time_remaining); 
                         //may need adjustment after we ensure json works
                     }
+                */
                if(bender_time_remaining >= 16)
                     $(".bender_battery").attr("src", "https://github.com/RayMaB/Robotics_FRI_WebPage/blob/master/Icons/full_battery.png?raw=true");
                 else if(bender_time_remaining >= 12)
@@ -161,6 +171,46 @@
           if(typeof parsedHead[1].Level != 'undefined')
             $(".bender_floor").html(parsedHead[1].Level);
         }
+        
+        //determining charge order  
+        //NOTES: have to redeclare what the class is after changing the var, so fix that
+          //later, figure out how to store the last known battery level and use that to 
+          //determine what the charge order is when they're both off
+        var bender_order = 0; 
+        var leela_order = 0;   
+        $(".bender_order").html(bender_order); 
+        $(".leela_order").html(leela_order);
+       if(typeof parsedHead[0] != 'undefined' && parsedHead[1] != undefined)
+        {
+            if(typeof parsedHead[0].Alive != 'undefined' && parsedHead[1].Alive != 'undefined')
+                {
+                    if(parsedHead[0].Alive != "false" && parsedHead[1].Alive != "false")
+                        {
+                            if(bender_time_remaining > leela_time_remaining)
+                                {
+                                    bender_order = 2;
+                                    leela_order = 1;
+                                }
+                            else
+                                {
+                                    bender_order = 1;
+                                    leela_order = 2;
+                                }
+                        }
+                    if(parsedHead[0].Alive != "false" && parsedHead[1].Alive === "false")
+                        {
+                            bender_order = 2;
+                            leela_order = 1;
+                        }
+                    else if(parsedHead[0].Alive === "false" && parsedHead[1].Alive != "false")
+                        {
+                            bender_order = 1;
+                            leela_order = 2;
+                        }
+                }
+        }
+        $(".bender_order").html(bender_order); 
+        $(".leela_order").html(leela_order);
 
         // comment in if pickles is added to the json
         /*if(typeof parsedHead[2] != 'undefined')
@@ -190,10 +240,14 @@
       .fail(function() {
         alert("Cannot connect to nixons-head.");
       });
+<<<<<<< HEAD:index.html
 	  
 	  //commented out because it breaking the button clicks
 	  //don't know why
       // setTimeout(callback, 60000);
+=======
+      setTimeout(arguments.callee, 60000);
+>>>>>>> origin/master:WebPage.html
     })();
 
     var turn_on_instructions = "1. Move main power from 'CHARGER' TO 'BATTERY'." +
@@ -211,9 +265,11 @@
       $(".on").click(function() {
         alert(turn_on_instructions);
       });
+        
       $(".off").click(function() {
         alert(turn_off_instructions);
       });
+        
     });
   </script>
 </body>
